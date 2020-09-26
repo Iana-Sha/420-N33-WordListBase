@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Lab2WS
 {
@@ -22,18 +23,33 @@ namespace Lab2WS
                     }
                     else
                     {
-                        //convert strings into character arrays i.e. ToCharArray()
-                        //sort both character arrays
+                        //convert strings into character arrays i.e. ToCharArray()                        
+                        char[] arrScWo;
+                        char[] arrWo;                                 
+                        arrScWo = scrambledWord.ToCharArray();
+                        arrWo = word.ToCharArray();
+
+                        //sort both character arrays                        
+                        Array.Sort(arrScWo);
+                        Array.Sort(arrWo);
+
                         //convert sorted character arrays into strings (toString)
-                        // 
+                        string sortedScWo = new string(arrScWo);
+                        string sortedWo = new string(arrWo);
+
                         //compare the two sorted strings. If they match, build the MatchWord
-                        //struct and add to matchedWords list.
+                        if (sortedScWo == sortedWo)
+                        {
+                            //struct and add to matchedWords list.
+                            matchedWords.Add(new MatchedWord() { ScrambledWord = scrambledWord, Word = word });
+                        }
+                        
                     }
 
                 }
             }
 
-            return null;
+            return matchedWords;
         }
 
         MatchedWord BuildMatchedWord(string scrambledWord, string word)
